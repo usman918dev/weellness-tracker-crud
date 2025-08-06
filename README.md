@@ -120,5 +120,3 @@ MIT
 
 ---
 
-> **Note:**
-> Replace the image paths (`public/dashboard-screenshot.png`, etc.) with your own screenshots for best results.
