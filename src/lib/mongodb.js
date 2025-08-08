@@ -1,26 +1,24 @@
+// lib/mongodb.js
 import { MongoClient } from 'mongodb';
 
-if (!process.env.MONGODB_URI) {
-  throw new Error('Please add your Mongodb URI to .env.local');
-}
-
 const uri = process.env.MONGODB_URI;
-const options = {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-};
+if (!uri) {
+  throw new Error('Please add your MONGODB_URI to .env.local');
+}
 
 let client;
 let clientPromise;
 
 if (process.env.NODE_ENV === 'development') {
+  // Use a global variable so the connection is cached across hot reloads in dev
   if (!global._mongoClientPromise) {
-    client = new MongoClient(uri, options);
+    client = new MongoClient(uri);
     global._mongoClientPromise = client.connect();
   }
   clientPromise = global._mongoClientPromise;
 } else {
-  client = new MongoClient(uri, options);
+  // In production, create a new connection
+  client = new MongoClient(uri);
   clientPromise = client.connect();
 }
 
