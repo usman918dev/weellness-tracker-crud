@@ -1,12 +1,12 @@
 {
-  "homepage":"https://usman918dev.github.io/weellness-tracker-crud",
+  "homepage":"https://personal-wellness-tracker.vercel.app",
   "name": "wellness-tracker",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
-    "deploy": "npm run build"
+    "build": "next build",
+    "deploy": "npm run build && gh-pages -d out"
   },
 
   "dependencies": {
